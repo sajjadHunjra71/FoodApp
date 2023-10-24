@@ -1,20 +1,31 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Text, View } from 'react-native';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import TabScreen from './screens/TabScreen';
+
+const Tab = createMaterialTopTabNavigator();
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator >
+      <Stack.Screen
+          name="Heading"
+          component={TabScreen}
+          options={{
+            title: 'Checkins',
+            headerTitleStyle: {
+              fontSize: 20, 
+            },
+            headerTitleAlign: 'center',        
+             }}
+        />
+       
+       {/* <Stack.Screen name="TabScreen" component={TabScreen} /> */}
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
